@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+	
+	<style>
+	h2.hidden {
+		display:none
+	}
+</style>
+		
+  </head>
+  <body ng-app="starter" ng-controller="RedditCtrl">
+
+    <ion-pane>
+      <div class="bar bar-header bar-positive">
+		  <h1 class="title">{{myHeader}}</h1>
+		  <button class="button icon ion-refresh"></button>
+	  </div>
+	  
+      <ion-content>
+		</br>
+		<center><b>Light</b></center>
+		<center>
+		<div class = "row">
+			<div class = "col">
+			<center>Light 1</center>
+				<input class="button button-balanced" type="button" ng-click="SendDataLight1OFF()" value="ON" id="light1Green" style="display:none">
+				<input class="button button-assertive" type="button" ng-click="SendDataLight1ON()" value="OFF" id="light1Red" style="display:block">
+			</div>
+			
+			<div class = "col">
+			<center>Light 2</center>
+				<input class="button button-balanced" type="button" ng-click="SendDataLight2OFF()" value="ON" id="light2Green" style="display:none">
+				<input class="button button-assertive" type="button" ng-click="SendDataLight2ON()" value="OFF" id="light2Red" style="display:block">
+			</div>
+			
+			<div class = "col">
+			<center>Light 3</center>
+				<input class="button button-balanced" type="button" ng-click="SendDataLight3OFF()" value="ON" id="light3Green" style="display:none">
+				<input class="button button-assertive" type="button" ng-click="SendDataLight3ON()" value="OFF" id="light3Red" style="display:block">
+			</div>
+			
+			<div class = "col">
+			<center>Light 4</center>
+				<input class="button button-balanced" type="button" ng-click="SendDataLight4OFF()" value="ON" id="light4Green" style="display:none">
+				<input class="button button-assertive" type="button" ng-click="SendDataLight4ON()" value="OFF" id="light4Red" style="display:block">
+			</div>						
+		</div>
+
+		<div class = "row">
+			<div class = "col">
+			<center>Light 5</center>
+				<input class="button button-balanced" type="button" ng-click="SendDataLight5OFF()" value="ON" id="light5Green" style="display:none">
+				<input class="button button-assertive" type="button" ng-click="SendDataLight5ON()" value="OFF" id="light5Red" style="display:block">
+			</div>
+			
+			<div class = "col">
+			<center>Light 6</center>
+				<input class="button button-balanced" type="button" ng-click="SendDataLight6OFF()" value="ON" id="light6Green" style="display:none">
+				<input class="button button-assertive" type="button" ng-click="SendDataLight6ON()" value="OFF" id="light6Red" style="display:block">				
+			</div>
+			
+			<div class = "col">
+			<center>Light 7</center>
+				<input class="button button-balanced" type="button" ng-click="SendDataLight7OFF()" value="ON" id="light7Green" style="display:none">
+				<input class="button button-assertive" type="button" ng-click="SendDataLight7ON()" value="OFF" id="light7Red" style="display:block">
+			</div>
+			
+			<div class = "col">
+			<center>Light 8</center>
+				<input class="button button-balanced" type="button" ng-click="SendDataLight8OFF()" value="ON" id="light8Green" style="display:none">
+				<input class="button button-assertive" type="button" ng-click="SendDataLight8ON()" value="OFF" id="light8Red" style="display:block">				
+			</div>						
+		</div>
+		</center>
+		
+		<center><b>Curtain</b></center>
+		<center>
+		<div class = "row">
+			<div class = "col">
+				<class="item item-checkbox  checkbox-positive">
+				<label class="checkbox">
+				<input type="checkbox" id="curtain1" ng-click="SendDataCurtain1()">
+				</label>
+				Curtain 1
+			</div>
+					
+			<div class = "col">
+				<class="item item-checkbox  checkbox-positive">
+				<label class="checkbox">
+				<input type="checkbox" id="curtain4" ng-click="SendDataCurtain4()">
+				</label>
+				Curtain 4
+			</div>	
+		</div>
+		
+		<div class = "row">			
+			<div class = "col">
+				<class="item item-checkbox  checkbox-positive">
+				<label class="checkbox">
+				<input type="checkbox" id="curtain2" ng-click="SendDataCurtain2()">
+				</label>
+				Curtain 2
+			</div>
+					
+			<div class = "col">
+				<class="item item-checkbox  checkbox-positive">
+				<label class="checkbox">
+				<input type="checkbox" id="curtain5" ng-click="SendDataCurtain5()">
+				</label>
+				Curtain 5
+			</div>		
+		</div>
+		</center>
+		
+		<center>
+		<div class = "row">		
+			<div class = "col">
+				<class="item item-checkbox  checkbox-positive">
+				<label class="checkbox">
+				<input type="checkbox" id="curtain3" ng-click="SendDataCurtain3()">
+				</label>
+				Curtain 3
+			</div>
+					
+			<div class = "col">
+				<class="item item-checkbox  checkbox-positive">
+				<label class="checkbox">
+				<input type="checkbox" id="curtain6" ng-click="SendDataCurtain6()">
+				</label>
+				Curtain 6
+			</div>		
+		</div>
+		</center>
+		
+		<center><b>Air Conditioner</b></center>
+		
+		<center>
+		<div class = "row">		
+			<div class = "col">
+			<center>AC 1</center>
+				<label class="toggle toggle-royal">
+					<input type="checkbox" id="ac1" ng-click="SendDataAc1()">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+				
+				<div class="card">
+					<center>
+					<div id="ac1Temp">NaN</div>
+					</center>
+				</div>	
+						
+				<center><input type="button" class="button button-calm"  width="1" height="1" value= &#x25B2 ng-click="SendDataAc1TempUp()"></center>
+				<center><input type="button" class="button button-calm"  width="1" height="1" value= &#x25BC ng-click="SendDataAc1TempDown()"></center>
+					
+			</div>
+					
+			<div class = "col">
+				<center>AC 2</center>
+				<label class="toggle toggle-royal">
+					<input type="checkbox" id="ac2" ng-click="SendDataAc2()">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+				
+				<div class="card">
+					<center>
+					<div id="ac2Temp">NaN</div>
+					</center>
+				</div>	
+				
+				<center><input type="button" class="button button-calm" width="1" height="1" value= &#x25B2 ng-click="SendDataAc2TempUp()"></center>
+				<center><input type="button" class="button button-calm" width="1" height="1" value= &#x25BC ng-click="SendDataAc2TempDown()"></center>
+							
+			</div>	
+
+			<div class = "col">
+				<center>AC 3</center>
+				<label class="toggle toggle-royal">
+					<input type="checkbox" id="ac3" ng-click="SendDataAc3()">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+				
+				<div class="card">
+					<center>
+					<div id="ac3Temp">NaN</div>
+					</center>
+				</div>	
+				
+				<center><input type="button" class="button button-calm" width="1" height="1" value= &#x25B2 ng-click="SendDataAc3TempUp()"></center>
+				<center><input type="button" class="button button-calm" width="1" height="1" value= &#x25BC ng-click="SendDataAc3TempDown()"></center>
+
+			</div>	
+		</div>
+		</center>
+		
+		<div class="list">
+            <a class="item" href="#" onclick="window.open('https://freeboard.io/board/Eydlcv', '_system', 'location=yes'); return false;">
+                <center>Click to Display in Freeboard</center>
+            </a>
+        </div>
+		
+		<!-- ID for data value that get from dweet -->
+		<!--
+		</br></br></br></br></br></br></br></br></br></br>
+		<div><b><center>*THIS IS FOR DEVELOPER*</center></b></div>
+		
+		<div>
+			<input class="button button-balanced" type="button" ng-click="receive()" value="RECEIVE">
+		</div>
+		-->
+		
+		<h2 id="light1Id" class="hidden">{{stories[0].light1}}</h2>
+		<h2 id="light2Id" class="hidden">{{stories[0].light2}}</h2>
+		<h2 id="light3Id" class="hidden">{{stories[0].light3}}</h2>
+		<h2 id="light4Id" class="hidden">{{stories[0].light4}}</h2>
+		<h2 id="light5Id" class="hidden">{{stories[0].light5}}</h2>
+		<h2 id="light6Id" class="hidden">{{stories[0].light6}}</h2>
+		<h2 id="light7Id" class="hidden">{{stories[0].light7}}</h2>
+		<h2 id="light8Id" class="hidden">{{stories[0].light8}}</h2>
+		
+		<h2 id="curtain1Id" class="hidden">{{stories[0].curtain1}}</h2>
+		<h2 id="curtain2Id" class="hidden">{{stories[0].curtain2}}</h2>
+		<h2 id="curtain3Id" class="hidden">{{stories[0].curtain3}}</h2>
+		<h2 id="curtain4Id" class="hidden">{{stories[0].curtain4}}</h2>
+		<h2 id="curtain5Id" class="hidden">{{stories[0].curtain5}}</h2>
+		<h2 id="curtain6Id" class="hidden">{{stories[0].curtain6}}</h2>
+		
+		<h2 id="ac1Id" class="hidden">{{stories[0].ac1}}</h2>
+		<h2 id="ac1TempId" class="hidden">{{stories[0].ac1Temp}}</h2>
+		<h2 id="ac2Id" class="hidden">{{stories[0].ac2}}</h2>
+		<h2 id="ac2TempId" class="hidden">{{stories[0].ac2Temp}}</h2>
+		<h2 id="ac3Id" class="hidden">{{stories[0].ac3}}</h2>
+		<h2 id="ac3TempId" class="hidden">{{stories[0].ac3Temp}}</h2>
+		
+		<script>
+		function incdec1(plusminus){
+			plusminus = parseInt(plusminus);
+			currentTemp = parseInt(document.getElementById("ac1Temp").innerHTML) + plusminus;
+			if (currentTemp<16){
+				currentTemp = 16;
+			}
+			if (currentTemp>30){
+				currentTemp = 30;
+			}
+			document.getElementById("ac1Temp").innerHTML = currentTemp;
+		}
+		
+		function incdec2(plusminus){
+			plusminus = parseInt(plusminus);
+			currentTemp = parseInt(document.getElementById("ac2Temp").innerHTML) + plusminus;
+			if (currentTemp<16){
+				currentTemp = 16;
+			}
+			if (currentTemp>30){
+				currentTemp = 30;
+			}
+			document.getElementById("ac2Temp").innerHTML = currentTemp;
+		}
+		
+		function incdec3(plusminus){
+			plusminus = parseInt(plusminus);
+			currentTemp = parseInt(document.getElementById("ac3Temp").innerHTML) + plusminus;
+			if (currentTemp<16){
+				currentTemp = 16;
+			}
+			if (currentTemp>30){
+				currentTemp = 30;
+			}
+			document.getElementById("ac3Temp").innerHTML = currentTemp;
+		}
+
+		</script>
+	
+		<script>
+		//light
+		function visibilityRed1() {
+			document.getElementById("light1Red").style.display = "none";
+			document.getElementById("light1Green").style.display = "block";
+		}
+		
+		function visibilityRed2() {
+			document.getElementById("light2Red").style.display = "none";
+			document.getElementById("light2Green").style.display = "block";
+		}
+		
+		function visibilityRed3() {
+			document.getElementById("light3Red").style.display = "none";
+			document.getElementById("light3Green").style.display = "block";
+		}
+		
+		function visibilityRed4() {
+			document.getElementById("light4Red").style.display = "none";
+			document.getElementById("light4Green").style.display = "block";
+		}
+		
+		function visibilityRed5() {
+			document.getElementById("light5Red").style.display = "none";
+			document.getElementById("light5Green").style.display = "block";
+		}
+		
+		function visibilityRed6() {
+			document.getElementById("light6Red").style.display = "none";
+			document.getElementById("light6Green").style.display = "block";
+		}
+		
+		function visibilityRed7() {
+			document.getElementById("light7Red").style.display = "none";
+			document.getElementById("light7Green").style.display = "block";
+		}
+		
+		function visibilityRed8() {
+			document.getElementById("light8Red").style.display = "none";
+			document.getElementById("light8Green").style.display = "block";
+		}
+		
+
+		function visibilityGreen1() {
+			document.getElementById("light1Green").style.display = "none";
+			document.getElementById("light1Red").style.display = "block";
+		}
+		
+		function visibilityGreen2() {
+			document.getElementById("light2Green").style.display = "none";
+			document.getElementById("light2Red").style.display = "block";
+		}
+		
+		function visibilityGreen3() {
+			document.getElementById("light3Green").style.display = "none";
+			document.getElementById("light3Red").style.display = "block";
+		}
+		
+		function visibilityGreen4() {
+			document.getElementById("light4Green").style.display = "none";
+			document.getElementById("light4Red").style.display = "block";
+		}
+		
+		function visibilityGreen5() {
+			document.getElementById("light5Green").style.display = "none";
+			document.getElementById("light5Red").style.display = "block";
+		}
+		
+		function visibilityGreen6() {
+			document.getElementById("light6Green").style.display = "none";
+			document.getElementById("light6Red").style.display = "block";
+		}
+		
+		function visibilityGreen7() {
+			document.getElementById("light7Green").style.display = "none";
+			document.getElementById("light7Red").style.display = "block";
+		}
+		
+		function visibilityGreen8() {
+			document.getElementById("light8Green").style.display = "none";
+			document.getElementById("light8Red").style.display = "block";
+		}
+		
+		//curtain
+		function curtain1Ok() {
+			document.getElementById("curtain1").checked = true;
+		}
+
+		function curtain1Ko() {
+			document.getElementById("curtain1").checked = false;
+		}
+		
+		function curtain2Ok() {
+			document.getElementById("curtain2").checked = true;
+		}
+
+		function curtain2Ko() {
+			document.getElementById("curtain2").checked = false;
+		}
+		
+		function curtain3Ok() {
+			document.getElementById("curtain3").checked = true;
+		}
+
+		function curtain3Ko() {
+			document.getElementById("curtain3").checked = false;
+		}
+		
+		function curtain4Ok() {
+			document.getElementById("curtain4").checked = true;
+		}
+
+		function curtain4Ko() {
+			document.getElementById("curtain4").checked = false;
+		}
+		
+		function curtain5Ok() {
+			document.getElementById("curtain5").checked = true;
+		}
+
+		function curtain5Ko() {
+			document.getElementById("curtain5").checked = false;
+		}
+		
+		function curtain6Ok() {
+			document.getElementById("curtain6").checked = true;
+		}
+
+		function curtain6Ko() {
+			document.getElementById("curtain6").checked = false;
+		}
+		
+		//ac
+		function ac1Ok() {
+			document.getElementById("ac1").checked = true;
+		}
+		
+		function ac1Ko() {
+			document.getElementById("ac1").checked = false;
+		}
+		
+		function ac2Ok() {
+			document.getElementById("ac2").checked = true;
+		}
+		
+		function ac2Ko() {
+			document.getElementById("ac2").checked = false;
+		}
+		
+		function ac3Ok() {
+			document.getElementById("ac3").checked = true;
+		}
+		
+		function ac3Ko() {
+			document.getElementById("ac3").checked = false;
+		}
+		</script>
+		
+		<script>
+		function initialState(){
+	
+			//for initial state
+			//light
+			var j = document.getElementById("light1Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed1();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen1();
+			}
+			
+			var j = document.getElementById("light2Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed2();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen2();
+			}
+			
+			var j = document.getElementById("light3Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed3();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen3();
+			}
+			
+			var j = document.getElementById("light4Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed4();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen4();
+			}
+			
+			var j = document.getElementById("light5Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed5();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen5();
+			}
+			
+			var j = document.getElementById("light6Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed6();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen6();
+			}
+			
+			var j = document.getElementById("light6Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed6();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen6();
+			}
+			
+			var j = document.getElementById("light7Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed7();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen7();
+			}
+			
+			var j = document.getElementById("light8Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				visibilityRed8();
+			}
+			else if (parseInt(j)==0){
+				visibilityGreen8();
+			}
+
+			//curtain
+			var j = document.getElementById("curtain1Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				curtain1Ok();
+			}
+			else if (parseInt(j)==0){
+				curtain1Ko();
+			}
+			
+			var j = document.getElementById("curtain2Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				curtain2Ok();
+			}
+			else if (parseInt(j)==0){
+				curtain2Ko();
+			}
+			
+			var j = document.getElementById("curtain3Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				curtain3Ok();
+			}
+			else if (parseInt(j)==0){
+				curtain3Ko();
+			}
+			
+			var j = document.getElementById("curtain4Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				curtain4Ok();
+			}
+			else if (parseInt(j)==0){
+				curtain4Ko();
+			}
+			
+			var j = document.getElementById("curtain5Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				curtain5Ok();
+			}
+			else if (parseInt(j)==0){
+				curtain5Ko();
+			}
+			
+			var j = document.getElementById("curtain6Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				curtain6Ok();
+			}
+			else if (parseInt(j)==0){
+				curtain6Ko();
+			}
+			
+			//ac
+			var j = document.getElementById("ac1Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				ac1Ok();
+			}
+			else if (parseInt(j)==0){
+				ac1Ko();
+			}
+			
+			var j = document.getElementById("ac2Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				ac2Ok();
+			}
+			else if (parseInt(j)==0){
+				ac2Ko();
+			}
+			
+			var j = document.getElementById("ac3Id").innerHTML;
+			JSON.stringify(j);
+			if (parseInt(j)==1){
+				ac3Ok();
+			}
+			else if (parseInt(j)==0){
+				ac3Ko();
+			}
+			
+			//acTemp
+			var j = document.getElementById("ac1TempId").innerHTML;
+			JSON.stringify(j);
+			document.getElementById("ac1Temp").innerHTML = parseInt(j);
+			
+			var j = document.getElementById("ac2TempId").innerHTML;
+			JSON.stringify(j);
+			document.getElementById("ac2Temp").innerHTML = parseInt(j);
+			
+			var j = document.getElementById("ac3TempId").innerHTML;
+			JSON.stringify(j);
+			document.getElementById("ac3Temp").innerHTML = parseInt(j);
+			
+		}
+		</script>
+		
+	  </ion-pane>
+	</ion-content>
+  </body>
+</html>
